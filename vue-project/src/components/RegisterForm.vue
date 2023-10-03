@@ -1,6 +1,6 @@
 <template>
   <div class="p-5">
-    <form @submit.prevent="register" class="form-signin">
+    <form @submit.prevent="registerForm" class="form-signin">
       <h2 class="mb-3">Register</h2>
       <input
         v-model="name"
@@ -53,26 +53,24 @@ export default {
     };
   },
   methods: {
-    async register() {
-      if (!this.passwordMismatch) {
-        const userData = {
-          name: this.name,
-          email: this.email,
-          password: this.password,
-        };
+    async registerForm() {
+      const userData = {
+        name: this.name,
+        email: this.email,
+        password: this.password,
+      };
 
-        try {
-          const response = await axios.post(
-            `${import.meta.env.VITE_API_URL}register`,
-            userData
-          );
-          console.log(response.data);
-        } catch (error) {
-          if (error.response && error.response.data.errors) {
-            this.errors = error.response.data.errors;
-          } else {
-            console.error("There was an error registering the user:", error);
-          }
+      try {
+        const response = await axios.post(
+          `${import.meta.env.VITE_API_URL}register`,
+          userData
+        );
+        console.log(response.data);
+      } catch (error) {
+        if (error.response && error.response.data.errors) {
+          this.errors = error.response.data.errors;
+        } else {
+          console.error("There was an error registering the user:", error);
         }
       }
     },
