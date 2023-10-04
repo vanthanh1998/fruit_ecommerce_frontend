@@ -1,5 +1,9 @@
 <template>
-    <div id="app">
-      <router-view></router-view>
-    </div>
+  <div id="app">
+    <MainLayout></MainLayout>
+  </div>
 </template>
+
+<script setup>
+import MainLayout from "./components/layouts/MainLayout.vue";
+</script>
